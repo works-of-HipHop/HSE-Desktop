@@ -1,0 +1,65 @@
+			
+				<div class="row">
+					<div class="columns sixteen tc">
+						<div class="navbar-fixed-top" style="width:100px;">
+							<div class="menu row tc">
+								<ul id="menu-dashboard-menu" class="clearfix unstyled primary-nav-menu">
+
+									<div data-ng-switch on="renderPath[ 0 ]">
+
+										<!-- MAIN MENU -->
+										<div data-ng-cloak class="anim8-page main" data-ng-switch-when="dashboard">
+
+											<li class="menu-item menu-item-type-post_type menu-item-object-page page_item">
+												<a href="javascript:;" data-ng-click="openPage('menu')" title="Main Menu"><span class="icon-home"></span></a>
+											</li>
+
+										</div>
+
+										<!-- REPORT -->
+										<div data-ng-cloak class="anim8-page main" data-ng-switch-when="report">
+
+											<div class="container body" data-ng-switch on="renderPath[ 1 ]">
+
+												<li class="menu-item menu-item-type-post_type menu-item-object-page page_item">
+													<a href="javascript:;" data-ng-click="goToHome()" title="Go Back"><span class="icon-chevron-left"></span></a>
+												</li>
+
+											</div>
+
+										</div>
+
+										<!-- FILE EXPLORER -->
+										<div data-ng-switch-when="browse">
+
+											<div data-ng-switch on="renderPath[ 1 ]">
+
+												<!-- PRINT PREVIEW -->
+												<div data-ng-switch-when="printPreview">
+													<!-- -->
+													<li class="menu-item menu-item-type-post_type menu-item-object-page page_item">
+														<a href="javascript:;" data-ng-click="goBackPreview(pdfPreviewPath)" title="Go Back"><span class="icon-chevron-left"></span></a>
+													</li> <!-- -->
+
+												</div>
+
+											</div>
+
+
+										</div>
+
+										<!-- DEFAULT -->
+										<div data-ng-switch-default>
+
+										</div>
+
+									</div>
+									
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			

@@ -1,0 +1,338 @@
+	<div class="row tile-content">
+		<br /><br />
+		<h3 class="tl FiraFont">Default configurations</h3>
+		<br />
+		<p>The Phola Coal HSE System consists of Documentation available in all departments, <strong>Phola</strong>, and main contractors; <strong>Minopex, Bidvest Magnum</strong> and <strong>Coallab</strong>.</p>
+		<hr />
+		<br />
+		<div class="row">
+			<div class="columns ten">
+				<ang-accordion one-at-a-time="true" icon-position="left" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">
+
+					<collapsible-item title="Network Folders" initially-open="false">
+						<div>
+							<p class="tl FiraFont alert alert-block alert-info">Configure the default Network folder locations for HSE.  Each Root Folder may have custom sub folders set or you may assign the default information categories to folders of your choosing.</p>
+							<!--
+							<label class="switch">
+								<label for="globalConfig" class="tl FiraFont"><Strong>Use Global Config File?</strong></label>
+								<input type="checkbox" id="globalConfig" data-ng-model="hseConfig.configuration.global" value="yes" data-ng-checked="hseConfig.configuration.global == true" data-ng-change="globalConfig()"><i title="Use Global Configuration File?"></i>
+							</label>
+							<br /><br />
+							root directory -->
+							<div class="row" data-ng-repeat="rootPath in hseConfig.paths.networkFolders">
+
+								<div class="row">
+								
+									<div class="columns nine">
+										<ul class="unstyled">
+											<li>
+												<label for="root" class="tl FiraFont"><strong>{{rootPath.Name}}</strong></label>
+												<div class="input-append">
+													<input 
+														type="text" 
+														name="root" 
+														class="form-control input-xlarge" 
+														data-ng-model="rootPath.Path" 
+														style="border-radius: 999px 0 0 999px;" required>
+													<button 
+														class="btn add-on FiraFont uppercase FiraFont brwse-btn" 
+														style="border: 1px solid #999 !important;color: #000;border-radius: 0 99px 99px 0;padding: 0.65em;" 
+														type="button" 
+														data-ng-click="addFolder( 'root', $index )">Browse
+													</button>
+												</div><!-- /input-group -->
+											</li>
+										</ul>
+									</div>
+									
+									<div class="columns six">
+										<br />
+										<div class="btn-group">
+											<button type="button"
+												class="btn uppercase FiraFont" 
+												style="border-radius: 999px;padding: 0.64em 1em " 
+												data-ng-click="defaultNetworkFolder($index)">New Folder(s)
+											</button>
+
+										</div>
+									
+									</div>
+
+								</div>
+
+								<br />
+
+								<div data-networkPathholder-id="{{$index}}">
+									<div class="ntwrkPths" data-ng-repeat="path in hseConfig.paths.networkFolders[$index].network">
+										<br />
+										<label for="ntwrkPth-{{path.ID}}" class="tl FiraFont uppercase">{{path.Name}}</label>
+										<div class="row" id="ntwrkPths-{{path.ID}}">
+											<div class="columns two">
+												<button 
+													type="button" 
+													class="btn btn-danger voetsek" 
+													data-title="Remove Network Path" 
+													data-ng-click="removeNetworkFolder( $parent.$index, $index )" 
+													data-npath="{{path.Path}}" 
+													style="margin-bottom:10px;">&times;</button>
+											</div>									
+											<div class="columns thirteen">
+												<div class="input-append">
+													<input 
+														type="text" 
+														name="ntwrkPth-{{path.ID}}"
+														style="border-radius: 999px 0 0 999px;"
+														class="form-control input-xlarge" 
+														required value="{{path.Path}}">
+													<button type="button"
+														class="btn uppercase FiraFont" 
+														style="border-radius: 0 999px 999px 0;padding: 0.64em 1em " 
+														data-ng-click="addNetworkFolder( $parent.$index, $index )">Add Folder<span class="icon-folder"></span>
+													</button>
+												</div>
+														
+											</div>
+										</div>
+									</div>
+								
+								</div>
+								<!--
+								<div id="magick" data-ng-show="newPath">
+									<div class="ntwrkPths" id="ntwrkPths-1">
+										<div class="row">
+											<div class="columns two"></div>									
+											<div class="columns thirteen">
+												<div class="input-group">
+													<input type="text" id="magickAdder" name="ntwrkPth" class="form-control macdaddy-rounded" required value="">
+													<span class="input-group-btn">
+														<button class="btn btn-default btn-success" type="button" data-ng-click="browse($event)" style="border-radius: 0 999px 999px 0;">{{translation.adminConfig.labelBrowse}}</button>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+								</div> END: #magick -->
+
+							</div>
+							
+							<br />
+							<hr />
+							<br />
+							<!--
+							<div class="row">
+								<h3 class="tl FiraFont"><strong>Branches</strong></h3>
+								<br />
+								<div class="btn-group fl">
+									<button type="button"
+										class="btn uppercase FiraFont" 
+										style="border-radius: 999px;padding: 0.64em 1em " 
+										data-ng-click="newBranchFolder()">New Branch
+									</button>
+								</div>
+								<div class="columns nine">
+									<ul class="unstyled">
+										<li data-ng-repeat="branchPath in hseConfig.paths.branchFolders">
+											<label for="root" class="tl FiraFont"><strong>{{branchPath.Name}}</strong></label>
+											<div class="input-append">
+												<input 
+													type="text" 
+													name="root" 
+													class="form-control input-xlarge" 
+													data-ng-model="branchPath.Path" 
+													style="border-radius: 999px 0 0 999px;" required>
+												<button 
+													class="btn add-on FiraFont uppercase FiraFont brwse-btn" 
+													style="border: 1px solid #999 !important;color: #000;border-radius: 0 99px 99px 0;padding: 0.65em;" 
+													type="button" 
+													data-ng-click="addFolder( 'branch', $index )">Browse
+												</button>
+											</div>
+										</li>
+									</ul>
+								</div>
+									
+								<div class="columns six"><br /></div>
+
+							</div>-->
+
+						</div>
+					</collapsible-item>
+
+					<collapsible-item title="Additional Folders" initially-open="false">
+						<div>
+							<p class="tl FiraFont alert alert-block alert-info">Add Additional Network Locations. <button type="button"
+									class="btn uppercase FiraFont" 
+									style="border-radius: 999px;padding: 0.64em 1em " 
+									data-ng-click="addBranchFolder()">Add Path<span class="icon-add"></span>
+								</button>
+							</p>							
+							
+							<div class="row">
+
+								<div data-branchFolder-id="{{$index}}">
+
+									<div class="ntwrkPths" data-ng-repeat="path in hseConfig.paths.branchFolders track by $index">
+										<br />
+										<label for="ntwrkPth-{{path.ID}}" class="tl FiraFont uppercase">{{path.Name}}</label>
+										<div class="row" id="ntwrkPths-{{path.ID}}">
+											<div class="columns two">
+												<button 
+													type="button" 
+													class="btn btn-danger voetsek" 
+													data-title="Remove Network Path" 
+													data-ng-click="removeBranchFolder( $index )" 
+													data-npath="{{path.Path}}" 
+													style="margin-bottom:10px;">&times;</button>
+											</div>									
+											<div class="columns thirteen">
+												<div class="input-append">
+													<input 
+														type="text" 
+														name="ntwrkPth-{{path.ID}}"
+														style="border-radius: 999px 0 0 999px;"
+														class="form-control input-xlarge" 
+														required value="{{path.Path}}">
+													<button 
+														class="btn add-on FiraFont uppercase FiraFont brwse-btn" 
+														style="border: 1px solid #999 !important;color: #000;border-radius: 0 99px 99px 0;padding: 0.65em;" 
+														type="button" 
+														data-ng-click="addFolder( 'branch', $index )">Browse
+													</button>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+							
+							<br />
+							<hr />
+							<br />
+							
+						</div>
+					</collapsible-item>
+
+					<collapsible-item title="Application Settings">
+						<div>
+							<p class="alert alert-block alert-info">Configure the default Printing Application for HSE.</p>
+							<br />
+							
+							<label for="pdfReader" class="tl FiraFont">{{hseConfig.paths.appFolders.pdf.Name}}</label>
+							<div class="input-append">
+								<input 
+									type="text" 
+									name="pdfReader" 
+									class="form-control input-xlarge" 
+									data-ng-model="hseConfig.paths.appFolders.pdf.Path" 
+									style="border-radius: 999px 0 0 999px;" required>
+								<button 
+									class="btn add-on btn-default FiraFont uppercase FiraFont brwse-btn" 
+									type="button" data-ng-click="addFile('PDF')"
+									style="border: 1px solid #999 !important;color: #000;border-radius: 0 99px 99px 0;padding: 0.65em;">Browse</button>
+							</div><!-- -->
+							<br /><br />
+							<!-- -->
+							<label for="defaultPrinter" class="tl FiraFont">Printer</label>
+							<div class="input-append">
+								<input 
+									type="text" 
+									name="defaultPrinter" 
+									class="form-control input-xlarge" 
+									data-ng-model="hseConfig.printing.defaultPrinter" 
+									style="border-radius: 999px;padding-left:1em;" required>
+							</div><!-- -->
+							<br />
+							<hr />
+							<br />
+							<!--
+							<label for="pdfReader" class="tl FiraFont"><strong>Permitted File Types</strong>:</label>
+							<table class="table footable hoverable">
+								<thead>
+									<tr class="tl uppercase mask-money">
+										<th>File Type</th>
+										<th>View</th>
+										<th>Print</th>
+										<th>Preview</th>
+										<th>Default App</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="dbFType in hseConfig.FileTypes">
+										<td>{{dbFType.extension}}</td>
+										 VISISIBLE OR NOT? 
+										<td>
+											<label class="switch">
+												<input type="checkbox" data-ng-model="dbFType.visibility"><i title="Make File Type Visible?"></i>
+											</label>
+										</td>
+										 PRINTABLE OR NOT? 
+										<td>
+											<label class="switch">
+												<input type="checkbox" data-ng-model="dbFType.print"><i title="Is File Type Printable?"></i>
+											</label>
+										</td>
+										 PREVIEWABLE OR NOT? 
+										<td>
+											<label class="switch">
+												<input type="checkbox" data-ng-model="dbFType.preview"><i title="Preview File Type?"></i>
+											</label>
+										</td>
+										 APP 
+										<td>
+											<div class="input-append">
+												<input 
+													type="text" 
+													class="form-control"
+													data-ng-model="dbFType.app_path"
+													style="border-radius: 999px 0 0 999px;" required>
+												<button 
+													class="btn add-on btn-default btn-success FiraFont uppercase FiraFont brwse-btn" 
+													type="button" data-ng-click="addFile( 'PDF', $index )"
+													style="border: 1px solid rgb(153, 153, 153) !important;">Browse</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table> -->
+							<br /><br />
+						</div>
+					</collapsible-item>
+										
+				</ang-accordion>
+			</div>
+			<div class="columns five">
+				<ang-accordion one-at-a-time="true" icon-position="left" close-icon-class="icon-chevron-right" open-icon-class="icon-chevron-down">
+					
+					<collapsible-item title="Information Categories" initially-open="true">
+						<div>
+							The following <strong>Information Categories</strong> are available:</p>
+							<ul class="FiraFont">
+								<li>Change Management</li>
+								<li>Managament Briefs</li>
+								<li>Newsflashes</li>
+								<li>Planned Task Observation</li>
+								<li>Policies</li>
+								<li>Pre-use inspection checklists</li>
+								<li>Procedures</li>
+								<li>Risk Assessments</li>
+								<li>Toolbox Talks</li>
+								<li>Material Safety Data Sheets (MSDS)</li>
+								<li>Environmental Documents</li>
+							</ul>
+						</div>
+					</collapsible-item>
+														
+				</ang-accordion>
+			</div>
+
+		</div>
+		<br />
+		<hr />
+		<br />
+		<button type="button" class="btn btn-block btn-success FiraFont uppercase macdaddy-rounded" style="padding:1.5em 1em;" data-ng-click="saveSettings()">Save Settings</button>
+		<br />
+	</div>
